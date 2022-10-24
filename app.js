@@ -7,6 +7,9 @@ var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+const uberRouter = require("./routes/uber");
+const boltRouter = require("./routes/bolt");
+const heetchRouter = require("./routes/heetch");
 
 var app = express();
 const cors = require("cors");
@@ -20,5 +23,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/uber", uberRouter);
+app.use("/bolt", boltRouter);
+app.use("/heetch", heetchRouter);
 
 module.exports = app;
