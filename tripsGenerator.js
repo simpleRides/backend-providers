@@ -3,9 +3,10 @@ const momentRandom = require("moment-random");
 const fs = require("fs");
 const fetch = require("node-fetch");
 const { response } = require("./app");
+const uid2 = require("uid2");
 
 const API_KEY = process.env.MAPS_API_KEY;
-// générer markup entre 1 et 3
+
 const NB_TRIPS = 100;
 const COORDINATES_MIN = { lat: 48.5, lon: 2 };
 const COORDINATES_MAX = { lat: 49.5, lon: 3 };
@@ -75,6 +76,7 @@ const myFunc = async function () {
       ) * 1;
 
     arr.push({
+      course_id: uid2(32),
       status: "Pending",
       coordinates: {
         lat: lat,
