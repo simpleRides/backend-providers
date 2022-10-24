@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const boltSchema = mongoose.Schema({
+  driver_id: String,
   course_id: String,
   status: String,
   coordinates: Object,

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const heetchSchema = mongoose.Schema({
+  driver: String,
   course_id: String,
   status: String,
   coordinates: Object,
