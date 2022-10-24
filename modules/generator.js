@@ -1,13 +1,10 @@
 const moment = require("moment");
 const momentRandom = require("moment-random");
-const fs = require("fs");
 const fetch = require("node-fetch");
-const { response } = require("./app");
 const uid2 = require("uid2");
 
 const API_KEY = process.env.MAPS_API_KEY;
 
-const NB_TRIPS = 100;
 const COORDINATES_MIN = { lat: 48.5, lon: 2 };
 const COORDINATES_MAX = { lat: 49.5, lon: 3 };
 const MARKUP_MIN = 1;
@@ -17,45 +14,13 @@ const MAX_PRICE = 150;
 const CLIENT_NOTE_MIN = 0;
 const CLIENT_NOTE_MAX = 5;
 
-// function randomElement(array, nb) {
-//   const shuffled = [...array].sort(() => 0.5 - Math.random());
-//   return shuffled.slice(0, nb);
-// }
-
 function randomNumber(min, max) {
   return Math.random() * (max - min) + min;
 }
 
-// function distance(lat1, lon1, lat2, lon2, unit) {
-//   if (lat1 == lat2 && lon1 == lon2) {
-//     return 0;
-//   } else {
-//     var radlat1 = (Math.PI * lat1) / 180;
-//     var radlat2 = (Math.PI * lat2) / 180;
-//     var theta = lon1 - lon2;
-//     var radtheta = (Math.PI * theta) / 180;
-//     var dist =
-//       Math.sin(radlat1) * Math.sin(radlat2) +
-//       Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-//     if (dist > 1) {
-//       dist = 1;
-//     }
-//     dist = Math.acos(dist);
-//     dist = (dist * 180) / Math.PI;
-//     dist = dist * 60 * 1.1515;
-//     if (unit == "K") {
-//       dist = dist * 1.609344;
-//     }
-//     if (unit == "N") {
-//       dist = dist * 0.8684;
-//     }
-//     return dist;
-//   }
-// }
-
-const myFunc = async function () {
+const generator = async function (NB) {
   const arr = [];
-  for (let i = 0; i < NB_TRIPS; i++) {
+  for (let i = 0; i < NB; i++) {
     const lat = randomNumber(COORDINATES_MIN.lat, COORDINATES_MAX.lat);
     const lon = randomNumber(COORDINATES_MIN.lon, COORDINATES_MAX.lon);
     const lat2 = randomNumber(COORDINATES_MIN.lat, COORDINATES_MAX.lat);
@@ -97,15 +62,4 @@ const myFunc = async function () {
   return arr;
 };
 
-myFunc().then((res) => {
-  const sortedTrips = res.sort((a, b) => a.date - b.date);
-  fs.writeFile("./trips.json", JSON.stringify(sortedTrips), (err) => {
-    if (err) {
-      console.error(err);
-    } else {
-      console.log(
-        `${NB_TRIPS} trips have been generated in trips.json file. Happy hackathon!`
-      );
-    }
-  });
-});
+module.exports = { generator };
