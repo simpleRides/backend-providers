@@ -1,9 +1,10 @@
 var express = require("express");
 var router = express.Router();
 
-/* GET home page. */
-router.get("/", function (req, res, next) {
-  res.render("index", { title: "Express" });
-});
+require("../models/connection");
+const heetchController = require("../controllers/heetch.controller");
+
+router.post("/server-generate/:num", heetchController.postGenerate);
+router.delete("/server-delete", heetchController.deleteAll);
 
 module.exports = router;
