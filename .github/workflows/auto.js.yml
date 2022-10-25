@@ -27,4 +27,7 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
-    - run: npm auto.js
+    
+    - name: run auto script
+      run: node auto.js
+
