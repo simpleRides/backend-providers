@@ -14,19 +14,19 @@ const refreshServer = async function () {
     method: "DELETE",
   }).then(() => console.log("Bolt SuppressionSuccess"));
   await fetch(
-    "https://backend-providers-wine.vercel.app/uber/server-generate/300",
+    "https://backend-providers-wine.vercel.app/uber/server-generate/10",
     {
       method: "POST",
     }
   ).then(() => console.log("Uber Generation Success"));
   await fetch(
-    "https://backend-providers-wine.vercel.app/heetch/server-generate/300",
+    "https://backend-providers-wine.vercel.app/heetch/server-generate/10",
     {
       method: "POST",
     }
   ).then(() => console.log("Heetch Generation Success"));
   await fetch(
-    "https://backend-providers-wine.vercel.app/bolt/server-generate/300",
+    "https://backend-providers-wine.vercel.app/bolt/server-generate/10",
     {
       method: "POST",
     }
