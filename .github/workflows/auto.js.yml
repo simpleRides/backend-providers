@@ -1,23 +1,22 @@
 name: Test
 
-on: 
-  schedule: 
-    - cron: '45 14 * * *'
+on:
+  schedule:
+    - cron: "0 22 * * *"
 
 jobs:
   job1:
     name: Build and run script
     runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v3
-      with: { ref: main }
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'yarn'
-    - run: yarn install
-    - name: run auto script
-      run: node auto.js
 
+    steps:
+      - uses: actions/checkout@v3
+        with: { ref: main }
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "yarn"
+      - run: yarn install
+      - name: run auto script
+        run: node auto.js
