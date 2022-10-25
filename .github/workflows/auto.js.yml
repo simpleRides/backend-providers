@@ -5,7 +5,7 @@ name: Run Auto Script
 
 on: 
   schedule: 
-    - cron: '15,30,45 * * * *' #run every day at 3:00 am
+    - cron: '0,15,30,45 * * * *' #run every day at 3:00 am
 
 jobs:
   build:
