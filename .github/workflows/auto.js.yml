@@ -4,6 +4,10 @@
 name: Run Auto Script
 
 on: 
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
   schedule: 
     - cron: '0,15,30,45 * * * *' #run every day at 3:00 am
 
