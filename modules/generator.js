@@ -25,7 +25,7 @@ const generator = async function (NB) {
     const lon = randomNumber(COORDINATES_MIN.lon, COORDINATES_MAX.lon);
     const lat2 = randomNumber(COORDINATES_MIN.lat, COORDINATES_MAX.lat);
     const lon2 = randomNumber(COORDINATES_MIN.lon, COORDINATES_MAX.lon);
-    const date = momentRandom(moment().add(3, "days"), moment());
+    const date = momentRandom(moment().add(1, "days"), moment());
 
     const mapsFetch = await fetch(
       `https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrix?origins=${lat},${lon}&destinations=${lat2},${lon2}&travelMode=driving&key=${API_KEY}`
