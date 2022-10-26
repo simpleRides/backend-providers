@@ -109,7 +109,7 @@ const postRidesBySettings = (req, res) => {
     },
     travelTime: {
       $gte: req.body.travelTimeMin || 0,
-      $lte: req.body.travelTimeMax || 1000000,
+      $lte: req.body.travelTimeMax || 100000,
     },
   }).then((data) => {
     if (data[0]) {
