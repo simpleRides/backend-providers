@@ -45,7 +45,7 @@ const deleteAll = (req, res) => {
   });
 };
 
-const getCourseById = (req, res) => {
+const getRideById = (req, res) => {
   Uber.find({ course_id: req.body.id }).then((data) => {
     if (data[0]) {
       res.json({ result: true, data });
@@ -55,7 +55,7 @@ const getCourseById = (req, res) => {
   });
 };
 
-const getAllCourses = (req, res) => {
+const getAllRides = (req, res) => {
   Uber.find({}).then((data) => {
     if (data[0]) {
       res.json({ result: true, data });
@@ -65,7 +65,7 @@ const getAllCourses = (req, res) => {
   });
 };
 
-const putCourseTaken = (req, res) => {
+const putRidesTaken = (req, res) => {
   if (!checkBody(req.body, ["course_id", "driver_id"])) {
     res.json({
       result: false,
@@ -95,7 +95,7 @@ const putCourseTaken = (req, res) => {
   });
 };
 
-const postCoursesByParams = (req, res) => {
+const postRidesBySettings = (req, res) => {
   Uber.find({
     clientNote: {
       $gte: req.body.clientNoteMin || 0,
@@ -123,7 +123,7 @@ const postCoursesByParams = (req, res) => {
   });
 };
 
-const refreshCoursesStatus = (req, res) => {
+const refreshRidesStatus = (req, res) => {
   Uber.updateMany({ date: { $lte: moment() } }, { status: "Passed" }).then(() =>
     Uber.find({ status: "Passed" }).then((data) =>
       res.json({ result: true, data })
@@ -134,9 +134,9 @@ const refreshCoursesStatus = (req, res) => {
 module.exports = {
   postGenerate,
   deleteAll,
-  getCourseById,
-  getAllCourses,
-  putCourseTaken,
-  postCoursesByParams,
-  refreshCoursesStatus,
+  getRideById,
+  getAllRides,
+  putRidesTaken,
+  postRidesBySettings,
+  refreshRidesStatus,
 };
