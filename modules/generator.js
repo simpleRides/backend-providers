@@ -5,8 +5,8 @@ const uid2 = require("uid2");
 
 const API_KEY = process.env.MAPS_API_KEY;
 
-const COORDINATES_MIN = { lat: 48.5, lon: 2 };
-const COORDINATES_MAX = { lat: 49.5, lon: 3 };
+const COORDINATES_MIN = { lat: 48.8212, lon: 2.22984 };
+const COORDINATES_MAX = { lat: 48.89964, lon: 2.41928 };
 const MARKUP_MIN = 1;
 const MARKUP_MAX = 3;
 const MIN_PRICE = 25;
