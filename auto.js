@@ -1,36 +1,18 @@
 const fetch = require("node-fetch");
 
 const refreshServer = async function () {
-  await fetch("https://backend-providers-wine.vercel.app/uber/server-delete", {
-    method: "DELETE",
+  await fetch("https://backend-providers-wine.vercel.app/uber/server-refresh", {
+    method: "PUT",
   }).then(() => console.log("Uber Suppression Success"));
   await fetch(
-    "https://backend-providers-wine.vercel.app/heetch/server-delete",
+    "https://backend-providers-wine.vercel.app/heetch/server-refresh",
     {
-      method: "DELETE",
+      method: "PUT",
     }
   ).then(() => console.log("Heetch Suppression Success"));
-  await fetch("https://backend-providers-wine.vercel.app/bolt/server-delete", {
-    method: "DELETE",
+  await fetch("https://backend-providers-wine.vercel.app/bolt/server-refresh", {
+    method: "PUT",
   }).then(() => console.log("Bolt SuppressionSuccess"));
-  await fetch(
-    "https://backend-providers-wine.vercel.app/uber/server-generate/500",
-    {
-      method: "POST",
-    }
-  ).then(() => console.log("Uber Generation Success"));
-  await fetch(
-    "https://backend-providers-wine.vercel.app/heetch/server-generate/500",
-    {
-      method: "POST",
-    }
-  ).then(() => console.log("Heetch Generation Success"));
-  await fetch(
-    "https://backend-providers-wine.vercel.app/bolt/server-generate/500",
-    {
-      method: "POST",
-    }
-  ).then(() => console.log("Bolt Generation Success"));
 };
 
 refreshServer();

@@ -25,7 +25,7 @@ const generator = async function (NB) {
     const lon = randomNumber(COORDINATES_MIN.lon, COORDINATES_MAX.lon);
     const lat2 = randomNumber(COORDINATES_MIN.lat, COORDINATES_MAX.lat);
     const lon2 = randomNumber(COORDINATES_MIN.lon, COORDINATES_MAX.lon);
-    const date = momentRandom(moment().add(1, "days"), moment());
+    const date = momentRandom(moment().add(3, "hours"), moment());
 
     const mapsFetch = await fetch(
       `https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrix?origins=${lat},${lon}&destinations=${lat2},${lon2}&travelMode=driving&key=${API_KEY}`
@@ -40,6 +40,19 @@ const generator = async function (NB) {
         1
       ) * 1;
 
+    const addressFetch = await fetch(
+      `http://dev.virtualearth.net/REST/v1/Locations/${lat}, ${lon}?key=${API_KEY}`
+    );
+    const addressResponse = await addressFetch.json();
+    const address = addressResponse.resourceSets[0].resources[0].name;
+
+    const pickupAddressFetch = await fetch(
+      `http://dev.virtualearth.net/REST/v1/Locations/${lat2}, ${lon2}?key=${API_KEY}`
+    );
+    const pickupAddressResponse = await pickupAddressFetch.json();
+    const pickupAddress =
+      pickupAddressResponse.resourceSets[0].resources[0].name;
+
     arr.push({
       course_id: uid2(32),
       status: "Pending",
@@ -47,11 +60,13 @@ const generator = async function (NB) {
         lat: lat,
         lon: lon,
       },
+      address: address,
       price: randomNumber(MIN_PRICE, MAX_PRICE).toFixed(0) * 1,
       pickupCoordinates: {
         lat: lat2,
         lon: lon2,
       },
+      pickupAddress: pickupAddress,
       clientNote: randomNumber(CLIENT_NOTE_MIN, CLIENT_NOTE_MAX).toFixed(2) * 1,
       markup: randomNumber(MARKUP_MIN, MARKUP_MAX).toFixed(2) * 1,
       date: date.toDate(),

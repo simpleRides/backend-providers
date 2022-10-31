@@ -1,8 +1,11 @@
 const Heetch = require("../models/heetch");
 const moment = require("moment");
+const momentRandom = require("moment-random");
 
 const { generator } = require("../modules/generator");
 const { checkBody } = require("../modules/checkBody");
+
+const date = momentRandom(moment().add(1, "days"), moment());
 
 const postGenerate = (req, res) => {
   generator(req.params.num)
@@ -12,8 +15,10 @@ const postGenerate = (req, res) => {
           course_id: data.course_id,
           status: data.status,
           coordinates: data.coordinates,
+          address: data.address,
           price: data.price,
           pickupCoordinates: data.pickupCoordinates,
+          pickupAddress: data.pickupAddress,
           clientNote: data.clientNote,
           markup: data.markup,
           date: data.date,
@@ -124,11 +129,10 @@ const postRidesBySettings = (req, res) => {
 };
 
 const refreshRidesStatus = (req, res) => {
-  Heetch.updateMany({ date: { $lte: moment() } }, { status: "Passed" }).then(
-    () =>
-      Heetch.find({ status: "Passed" }).then((data) =>
-        res.json({ result: true, data })
-      )
+  Heetch.updateMany({ date: { $lte: moment() } }, { date: date }).then(() =>
+    Heetch.find({ status: "Passed" }).then((data) =>
+      res.json({ result: true, data })
+    )
   );
 };
 
