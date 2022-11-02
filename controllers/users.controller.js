@@ -37,10 +37,14 @@ const postSignin = (req, res) => {
   }
 
   User.findOne({ username: req.body.username }).then((data) => {
-    if (bcrypt.compareSync(req.body.password, data.password)) {
-      res.json({ result: true, token: data.token });
+    if (data) {
+      if (bcrypt.compareSync(req.body.password, data.password)) {
+        res.json({ result: true, token: data.token });
+      } else {
+        res.json({ result: false, error: "User not found or wrong password" });
+      }
     } else {
-      res.json({ result: false, error: "User not found or wrong password" });
+      res.json({ result: false, error: "User not found." });
     }
   });
 };
