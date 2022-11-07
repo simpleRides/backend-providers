@@ -129,11 +129,30 @@ const postRidesBySettings = (req, res) => {
 };
 
 const refreshRidesStatus = (req, res) => {
-  Bolt.updateMany({ date: { $lte: moment() } }, { date: date }).then(() =>
-    Bolt.find({ status: "Passed" }).then((data) =>
-      res.json({ result: true, data })
-    )
+  Bolt.updateMany({ date: { $lte: moment() } }, { date: date }).then((data) =>
+    res.json({
+      result: true,
+      update:
+        data.modifiedCount > 0
+          ? `${data.modifiedCount} rides were updated.`
+          : `No rides to update.`,
+    })
   );
+};
+
+const statusRefresh = (req, res) => {
+  Bolt.updateMany(
+    { status: "Taken" },
+    { status: "Pending", driver: null }
+  ).then((data) => {
+    res.json({
+      result: true,
+      update:
+        data.modifiedCount > 0
+          ? `${data.modifiedCount} rides were updated.`
+          : `No rides to update.`,
+    });
+  });
 };
 
 module.exports = {
@@ -144,4 +163,5 @@ module.exports = {
   putRidesTaken,
   postRidesBySettings,
   refreshRidesStatus,
+  statusRefresh,
 };
