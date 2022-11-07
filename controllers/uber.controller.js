@@ -140,6 +140,21 @@ const refreshRidesStatus = (req, res) => {
   );
 };
 
+const statusRefresh = (req, res) => {
+  Uber.updateMany(
+    { status: "Taken" },
+    { status: "Pending", driver: null }
+  ).then((data) => {
+    res.json({
+      result: true,
+      update:
+        data.modifiedCount > 0
+          ? `${data.modifiedCount} rides were updated.`
+          : `No rides to update.`,
+    });
+  });
+};
+
 module.exports = {
   postGenerate,
   deleteAll,
@@ -148,4 +163,5 @@ module.exports = {
   putRidesTaken,
   postRidesBySettings,
   refreshRidesStatus,
+  statusRefresh,
 };

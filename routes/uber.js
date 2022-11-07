@@ -11,6 +11,7 @@ router.post("/settings", uberController.postRidesBySettings);
 router.put("/ridesTaken", uberController.putRidesTaken);
 
 router.put("/server-refresh", uberController.refreshRidesStatus);
+router.put("/server-status-refresh", uberController.statusRefresh);
 router.post("/server-generate/:num", uberController.postGenerate);
 router.delete("/server-delete", uberController.deleteAll);
 

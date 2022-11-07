@@ -11,6 +11,7 @@ router.post("/settings", boltController.postRidesBySettings);
 router.put("/ridesTaken", boltController.putRidesTaken);
 
 router.put("/server-refresh", boltController.refreshRidesStatus);
+router.put("/server-status-refresh", boltController.statusRefresh);
 router.post("/server-generate/:num", boltController.postGenerate);
 router.delete("/server-delete", boltController.deleteAll);
 
