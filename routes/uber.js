@@ -5,7 +5,7 @@ require("../models/connection");
 const uberController = require("../controllers/uber.controller");
 
 router.get("/", uberController.getAllRides);
-router.get("/id", uberController.getRideById);
+router.get("/:id", uberController.getRideById);
 
 router.post("/settings", uberController.postRidesBySettings);
 router.put("/ridesTaken", uberController.putRidesTaken);

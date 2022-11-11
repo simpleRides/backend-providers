@@ -5,7 +5,7 @@ require("../models/connection");
 const heetchController = require("../controllers/heetch.controller");
 
 router.get("/", heetchController.getAllRides);
-router.get("/id", heetchController.getRideById);
+router.get("/:id", heetchController.getRideById);
 
 router.post("/settings", heetchController.postRidesBySettings);
 router.put("/ridesTaken", heetchController.putRidesTaken);

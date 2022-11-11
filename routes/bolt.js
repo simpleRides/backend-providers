@@ -5,7 +5,7 @@ require("../models/connection");
 const boltController = require("../controllers/bolt.controller");
 
 router.get("/", boltController.getAllRides);
-router.get("/id", boltController.getRideById);
+router.get("/:id", boltController.getRideById);
 
 router.post("/settings", boltController.postRidesBySettings);
 router.put("/ridesTaken", boltController.putRidesTaken);

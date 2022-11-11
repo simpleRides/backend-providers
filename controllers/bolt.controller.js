@@ -51,7 +51,7 @@ const deleteAll = (req, res) => {
 };
 
 const getRideById = (req, res) => {
-  Bolt.find({ course_id: req.body.id }).then((data) => {
+  Bolt.find({ course_id: req.params.id }).then((data) => {
     if (data[0]) {
       res.json({ result: true, data });
     } else {
