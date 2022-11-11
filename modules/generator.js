@@ -32,26 +32,25 @@ const generator = async function (NB) {
     );
     const response = await mapsFetch.json();
     const distance =
-      response.resourceSets[0].resources[0].results[0].travelDistance.toFixed(
-        1
-      ) * 1;
+      response.resourceSets[0]?.resources[0]?.results[0]?.travelDistance.toFixed(1
+      ) * 1 || 0;
     const travelTime =
-      response.resourceSets[0].resources[0].results[0].travelDuration.toFixed(
+      response.resourceSets[0]?.resources[0]?.results[0]?.travelDuration.toFixed(
         1
-      ) * 1;
+      ) * 1 || 0;
 
     const addressFetch = await fetch(
       `http://dev.virtualearth.net/REST/v1/Locations/${lat}, ${lon}?key=${API_KEY}`
     );
     const addressResponse = await addressFetch.json();
-    const address = addressResponse.resourceSets[0].resources[0].name;
+    const address = addressResponse.resourceSets[0]?.resources[0]?.name;
 
     const pickupAddressFetch = await fetch(
       `http://dev.virtualearth.net/REST/v1/Locations/${lat2}, ${lon2}?key=${API_KEY}`
     );
     const pickupAddressResponse = await pickupAddressFetch.json();
     const pickupAddress =
-      pickupAddressResponse.resourceSets[0].resources[0].name;
+      pickupAddressResponse.resourceSets[0]?.resources[0]?.name;
 
     arr.push({
       course_id: uid2(32),
