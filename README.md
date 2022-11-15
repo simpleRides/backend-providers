@@ -18,10 +18,9 @@ Type: GET --- Route: / --- Exemple: https://providers-sooty.vercel.app/uber renv
 
 RECUPERER UNE COURSE PAR SON ID :
 
-Type: GET --- Route: /id --- Exemple: https://providers-sooty.vercel.app/bolt/id renverra la course correspondant au req.body.id renseigné dans la BDD Bolt
+Type: GET --- Route: /:id --- Exemple: https://providers-sooty.vercel.app/bolt/id renverra la course dans la BDD Bolt correspondant au req.params.id renseigné 
 
-Infos REQUISES (obligatoire) dans le body:
-id = course_id de la course recherchée
+Info REQUISE (obligatoire) : params id = course_id de la course recherchée
 
 RECUPERER LES COURSES PAR SETTINGS :
 
